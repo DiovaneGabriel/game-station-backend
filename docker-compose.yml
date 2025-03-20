@@ -1,0 +1,19 @@
+services:
+    game-station-backend:
+        image: diovanegabriel/php8.3-laravel:latest
+        container_name: game-station-backend
+        ports:
+            - 80:80
+        environment:
+            - APACHE_RUN_USER=#1000
+            - APACHE_RUN_GROUP=#1000
+        volumes:
+            - ./:/var/www/html
+            - ./.docker/php.ini:/usr/local/etc/php/php.ini
+        networks:
+            game-station:
+        restart: unless-stopped
+
+networks:
+  game-station:
+    external: true
